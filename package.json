@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "api",
+      "web"
+    ]
+  },
+  "scripts": {
+    "cypress": "cypress open"
+  },
+  "devDependencies": {
+    "@redwoodjs/core": "^0.20.0",
+    "cypress": "^5.5.0"
+  },
+  "eslintConfig": {
+    "extends": "@redwoodjs/eslint-config"
+  },
+  "engines": {
+    "node": ">=12",
+    "yarn": ">=1.15"
+  }
+}
