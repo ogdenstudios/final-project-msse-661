@@ -1,13 +1,10 @@
-# Redwood
+# Tyler Williams MSSE 661 Final Project
 
-> **WARNING:** RedwoodJS software has not reached a stable version 1.0 and should not be considered suitable for production use. In the "make it work; make it right; make it fast" paradigm, Redwood is in the later stages of the "make it work" phase.
+Built with [RedwoodJS](https://redwoodjs.com)
 
-## Getting Started
-- [Tutorial](https://redwoodjs.com/tutorial/welcome-to-redwood): getting started and complete overview guide.
-- [Docs](https://redwoodjs.com/docs/introduction): using the Redwood Router, handling assets and files, list of command-line tools, and more.
-- [Redwood Community](https://community.redwoodjs.com): get help, share tips and tricks, and collaborate on everything about RedwoodJS.
+[View the production site](https://tyler-williams-msse661-final-project.netlify.app/)
 
-### Setup
+## Setup
 
 We use Yarn as our package manager. To get the dependencies installed, just do this in the root directory:
 
@@ -23,10 +20,29 @@ yarn redwood dev
 
 Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on `http://localhost:8911` and are also proxied to `http://localhost:8910/.redwood/functions/*`.
 
-### Tests
+## Tests
 
 Cypress:
 
 ```
 yarn cypress
 ```
+
+## Logging in
+
+We use [Netlify Identity](https://docs.netlify.com/visitor-access/identity/) for the [RedwoodJS authentication](https://redwoodjs.com/docs/authentication). There is a test user set up with the credentials:
+
+```
+email: tyler@ogdenstudios.xyz
+password: password
+```
+
+In the entrypoint, we set up the correct localStorage cookies for Netlify Identity to run on development machines, but if you receive an error message that reads:
+
+```
+Looks like you're running a local server. Please let us know the URL of your Netlify site.
+```
+
+Use the following URL: `https://tyler-williams-msse661-final-project.netlify.app/`
+
+The test credentials should work in development environments, and also in production (an acceptable choice for a class project of this scope).
