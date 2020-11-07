@@ -22,6 +22,12 @@ Your browser should open automatically to `http://localhost:8910` to see the web
 
 ## Tests
 
+RedwoodJS Tests (Jest):
+
+```
+yarn rw test
+```
+
 Cypress:
 
 ```

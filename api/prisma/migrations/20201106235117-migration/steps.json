@@ -1,0 +1,27 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateSource",
+      "source": "DS"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "DS"
+      },
+      "argument": "provider",
+      "value": "[\"sqlite\", \"postgresql\"]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "DS"
+      },
+      "argument": "url",
+      "value": "\"***\""
+    }
+  ]
+}
