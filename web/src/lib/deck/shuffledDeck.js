@@ -1,3 +1,5 @@
+import RandomInteger from '../randomNumbers/randomInteger'
+
 const ShuffledDeck = () => {
   const deck = [
     'AS',
@@ -56,7 +58,7 @@ const ShuffledDeck = () => {
   // Shuffle the deck with Fisher-Yates
   // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
   for (let i = 0; i < deck.length; i++) {
-    const j = Math.floor(Math.random() * deck.length)
+    const j = RandomInteger(deck.length, 0)
     const tempi = deck[i]
     const tempj = deck[j]
 

@@ -7,6 +7,6 @@ describe('Shuffled decks', () => {
   })
   it('Stores cards as strings', () => {
     const deck = ShuffledDeck()
-    expect(deck.every((card) => typeof card == 'string')).toBe(true)
+    expect(deck.every((card) => typeof card === 'string')).toBe(true)
   })
 })
