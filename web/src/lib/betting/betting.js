@@ -25,9 +25,12 @@ const Betting = (bettingRound, numberOfPlayers) => {
   }
 
   const pot = allBettingRounds.flat().reduce((acc, val) => acc + val, 0)
-
+  const currentBettingRound = allBettingRounds[bettingRound].slice(
+    0,
+    numberOfPlayers
+  )
   return {
-    currentBettingRound: allBettingRounds[bettingRound],
+    currentBettingRound,
     pot,
   }
 }
