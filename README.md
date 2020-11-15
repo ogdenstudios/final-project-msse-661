@@ -78,4 +78,4 @@ Cypress:
 yarn cypress
 ```
 
-**Note: on WSL, the Jest tests may run slowly, and Cypress may fail to run entirely. WSL1 doesn't have a good windowing solution. This should not be a problem on OSX or Linux systems.**
+**Note: on WSL, the Jest tests may run slowly, and Cypress may fail to run entirely. WSL1 doesn't have a good windowing solution. This should not be a problem on OSX or Linux systems. I hear WSL2 might fix this problem, but I have not confirmed that.**
