@@ -23,7 +23,7 @@ Built with [RedwoodJS](https://redwoodjs.com)
 
 ## Setup
 
-We use Yarn as our package manager. To get the dependencies installed, just do this in the root directory:
+We use [Yarn](https://classic.yarnpkg.com/en/docs/install/) as our package manager. To get the dependencies installed, just do this in the root directory:
 
 ```terminal
 yarn install
