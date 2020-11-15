@@ -6,21 +6,10 @@ const Scenario = (deck) => {
 
   // Determine the community cards, based on a randomly selected betting round
   const communityCards = []
-  const bettingRound = RandomInteger(3, 0)
-  const numberOfCards = () => {
-    switch (bettingRound) {
-      case 0:
-        return 0
-      case 1:
-        return 3
-      case 2:
-        return 4
-      case 3:
-        return 5
-    }
-  }
+  const bettingRound = RandomInteger(4, 0)
+  const numberOfCards = [0, 3, 4, 5]
 
-  for (let i = 0; i < numberOfCards; i++) {
+  for (let i = 0; i < numberOfCards[bettingRound]; i++) {
     communityCards[i] = deck[i + 2]
   }
 
