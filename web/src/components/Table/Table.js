@@ -1,8 +1,34 @@
 import React, { useState } from 'react'
+import { useMutation } from '@redwoodjs/web'
 import Scenario from '../../lib/scenarios/scenario'
 
+// GraphQL Mutation
+const CREATE_SCENARIO = gql`
+  mutation CreateScenarioMutation($input: CreateScenarioInput!) {
+    createScenario(input: $input) {
+      id
+    }
+  }
+`
+
 const Table = () => {
+  const [create] = useMutation(CREATE_SCENARIO)
   const [scenario, setScenario] = useState(Scenario())
+
+  const generateAndSaveNewScenario = () => {
+    const newScenario = Scenario()
+    setScenario(newScenario)
+    create({
+      variables: {
+        input: {
+          bettingInformation: JSON.stringify(newScenario.bettingInformation),
+          communityCards: JSON.stringify(newScenario.communityCards),
+          holeCards: JSON.stringify(newScenario.holeCards),
+          players: newScenario.players,
+        },
+      },
+    })
+  }
 
   return (
     <div>
@@ -14,7 +40,7 @@ const Table = () => {
       <div>
         Betting round: {scenario.bettingInformation.currentBettingRound}
       </div>
-      <button onClick={() => setScenario(Scenario())}>New scenario</button>
+      <button onClick={() => generateAndSaveNewScenario()}>New scenario</button>
     </div>
   )
 }

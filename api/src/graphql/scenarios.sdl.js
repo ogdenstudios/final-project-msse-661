@@ -24,4 +24,8 @@ export const schema = gql`
     holeCards: String
     players: Int
   }
+
+  type Mutation {
+    createScenario(input: CreateScenarioInput!): Scenario
+  }
 `
