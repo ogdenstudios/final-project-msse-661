@@ -1,8 +1,25 @@
 # Tyler Williams MSSE 661 Final Project
 
+**Texas Hold 'Em Odds Calculator**
+
+
+[The Texas Hold ‘Em Odds Calculator](https://tyler-williams-msse661-final-project.netlify.app/) is a web application that helps people improve their ability to make sound mathematical decisions in poker games.
+
+Users are be presented with randomized poker scenarios and asked to calculate their pot odds and hand strength (using the rule of 2 and 4).
+
+User success is graded server-side and stored in a database, along with each scenario in question.
+
 Built with [RedwoodJS](https://redwoodjs.com)
 
-[View the production site](https://tyler-williams-msse661-final-project.netlify.app/)
+## Feature Progress
+
+* [x] Home page for signing in and signing up
+* [x] Authentication and authorization solution
+* [x] Frontend logic to generate random hole cards, community cards, and betting scenarios
+* [x] Random scenarios saved to the database
+* [] User input to collect answers
+* [] Backend validation and grading
+* [] User grades and results tracking stored in the database
 
 ## Setup
 
