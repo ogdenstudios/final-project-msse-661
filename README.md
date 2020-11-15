@@ -13,13 +13,13 @@ Built with [RedwoodJS](https://redwoodjs.com)
 
 ## Feature Progress
 
-* [x] Home page for signing in and signing up
-* [x] Authentication and authorization solution
-* [x] Frontend logic to generate random hole cards, community cards, and betting scenarios
-* [x] Random scenarios saved to the database
-* User input to collect answers
-* Backend validation and grading
-* User grades and results tracking stored in the database
+- [x] Home page for signing in and signing up
+- [x] Authentication and authorization solution
+- [x] Frontend logic to generate random hole cards, community cards, and betting scenarios
+- [x] Random scenarios saved to the database
+- [ ] User input to collect answers
+- [ ] Backend validation and grading
+- [ ] User grades and results tracking stored in the database
 
 ## Setup
 
