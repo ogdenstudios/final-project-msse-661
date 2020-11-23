@@ -17,26 +17,21 @@ const Table = () => {
   const [potOdds, setPotOdds] = useState('')
   const [handStrength, setHandStrength] = useState('')
 
-  const generateAndSaveNewScenario = () => {
-    const newScenario = Scenario()
-    setScenario(newScenario)
-    create({
-      variables: {
-        input: {
-          bettingInformation: JSON.stringify(newScenario.bettingInformation),
-          communityCards: JSON.stringify(newScenario.communityCards),
-          holeCards: JSON.stringify(newScenario.holeCards),
-          players: newScenario.players,
-        },
-      },
-    })
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log(potOdds)
     console.log(handStrength)
     console.log(scenario)
+    create({
+      variables: {
+        input: {
+          bettingInformation: JSON.stringify(scenario.bettingInformation),
+          communityCards: JSON.stringify(scenario.communityCards),
+          holeCards: JSON.stringify(scenario.holeCards),
+          players: scenario.players,
+        },
+      },
+    })
   }
 
   return (
@@ -49,7 +44,7 @@ const Table = () => {
       <div>
         Betting round: {scenario.bettingInformation.currentBettingRound}
       </div>
-      <button onClick={() => generateAndSaveNewScenario()}>New scenario</button>
+      <button onClick={() => setScenario(Scenario())}>New scenario</button>
       <form data-cy="answerForm" onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="potOdds">What are your pot odds?</label>
         <input
