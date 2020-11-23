@@ -52,6 +52,7 @@ const Table = () => {
           name="potOdds"
           value={potOdds}
           onChange={(event) => setPotOdds(event.target.value)}
+          required={true}
         />
         <br></br>
         <label htmlFor="handStrength">
@@ -62,6 +63,7 @@ const Table = () => {
           name="handStrength"
           value={handStrength}
           onChange={(event) => setHandStrength(event.target.value)}
+          required={true}
         />
         <br></br>
         <button data-cy="submitAnswer">Submit</button>
