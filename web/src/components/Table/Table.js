@@ -14,17 +14,21 @@ const CREATE_SCENARIO = gql`
 const Table = () => {
   const [create] = useMutation(CREATE_SCENARIO)
   const [scenario, setScenario] = useState(Scenario())
+  const [potOdds, setPotOdds] = useState('')
+  const [handStrength, setHandStrength] = useState('')
 
-  const generateAndSaveNewScenario = () => {
-    const newScenario = Scenario()
-    setScenario(newScenario)
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(potOdds)
+    console.log(handStrength)
+    console.log(scenario)
     create({
       variables: {
         input: {
-          bettingInformation: JSON.stringify(newScenario.bettingInformation),
-          communityCards: JSON.stringify(newScenario.communityCards),
-          holeCards: JSON.stringify(newScenario.holeCards),
-          players: newScenario.players,
+          bettingInformation: JSON.stringify(scenario.bettingInformation),
+          communityCards: JSON.stringify(scenario.communityCards),
+          holeCards: JSON.stringify(scenario.holeCards),
+          players: scenario.players,
         },
       },
     })
@@ -40,7 +44,30 @@ const Table = () => {
       <div>
         Betting round: {scenario.bettingInformation.currentBettingRound}
       </div>
-      <button onClick={() => generateAndSaveNewScenario()}>New scenario</button>
+      <button onClick={() => setScenario(Scenario())}>New scenario</button>
+      <form data-cy="answerForm" onSubmit={(event) => handleSubmit(event)}>
+        <label htmlFor="potOdds">What are your pot odds?</label>
+        <input
+          data-cy="potOdds"
+          name="potOdds"
+          value={potOdds}
+          onChange={(event) => setPotOdds(event.target.value)}
+          required={true}
+        />
+        <br></br>
+        <label htmlFor="handStrength">
+          What is your approximate hand strength?
+        </label>
+        <input
+          data-cy="handStrength"
+          name="handStrength"
+          value={handStrength}
+          onChange={(event) => setHandStrength(event.target.value)}
+          required={true}
+        />
+        <br></br>
+        <button data-cy="submitAnswer">Submit</button>
+      </form>
     </div>
   )
 }
