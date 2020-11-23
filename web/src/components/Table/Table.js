@@ -14,6 +14,8 @@ const CREATE_SCENARIO = gql`
 const Table = () => {
   const [create] = useMutation(CREATE_SCENARIO)
   const [scenario, setScenario] = useState(Scenario())
+  const [potOdds, setPotOdds] = useState('')
+  const [handStrength, setHandStrength] = useState('')
 
   const generateAndSaveNewScenario = () => {
     const newScenario = Scenario()
@@ -30,6 +32,13 @@ const Table = () => {
     })
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(potOdds)
+    console.log(handStrength)
+    console.log(scenario)
+  }
+
   return (
     <div>
       <h2>Scenario:</h2>
@@ -41,6 +50,27 @@ const Table = () => {
         Betting round: {scenario.bettingInformation.currentBettingRound}
       </div>
       <button onClick={() => generateAndSaveNewScenario()}>New scenario</button>
+      <form data-cy="answerForm" onSubmit={(event) => handleSubmit(event)}>
+        <label htmlFor="potOdds">What are your pot odds?</label>
+        <input
+          data-cy="potOdds"
+          name="potOdds"
+          value={potOdds}
+          onChange={(event) => setPotOdds(event.target.value)}
+        />
+        <br></br>
+        <label htmlFor="handStrength">
+          What is your approximate hand strength?
+        </label>
+        <input
+          data-cy="handStrength"
+          name="handStrength"
+          value={handStrength}
+          onChange={(event) => setHandStrength(event.target.value)}
+        />
+        <br></br>
+        <button data-cy="submitAnswer">Submit</button>
+      </form>
     </div>
   )
 }

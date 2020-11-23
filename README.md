@@ -2,7 +2,6 @@
 
 **Texas Hold 'Em Odds Calculator**
 
-
 [The Texas Hold ‘Em Odds Calculator](https://tyler-williams-msse661-final-project.netlify.app/) is a web application that helps people improve their ability to make sound mathematical decisions in poker games.
 
 Users are be presented with randomized poker scenarios and asked to calculate their pot odds and hand strength (using the rule of 2 and 4).
