@@ -13,14 +13,20 @@ const Grade = (payload) => {
     payload.scenario.communityCards
   )
 
-  const actualHandStrength = numberOfOuts * 2
+  const actualHandStrength = () => {
+    if (payload.scenario.communityCards.length === 3) {
+      return numberOfOuts * 4
+    } else {
+      return numberOfOuts * 2
+    }
+  }
 
   // Grade the answers
   let grade = 0
   if (actualPotOdds === payload.potOdds) {
     grade += 0.5
   }
-  if (actualHandStrength === payload.handStrength) {
+  if (actualHandStrength() === payload.handStrength) {
     grade += 0.5
   }
   return grade

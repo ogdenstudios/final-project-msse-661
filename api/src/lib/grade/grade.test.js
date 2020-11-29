@@ -36,7 +36,7 @@ describe('Betting', () => {
   it('Returns a 0.5 if the hand strength is correct but the pot odds are not', () => {
     const partialAnswer = {
       potOdds: 30,
-      handStrength: 2,
+      handStrength: 4,
       scenario: {
         bettingInformation: {
           pot: 100,
@@ -52,7 +52,7 @@ describe('Betting', () => {
   it('Returns a 1 if the answer is correct', () => {
     const correctAnswer = {
       potOdds: 30,
-      handStrength: 2,
+      handStrength: 4,
       scenario: {
         bettingInformation: {
           pot: 70,
