@@ -8,7 +8,7 @@ Users are be presented with randomized poker scenarios and asked to calculate th
 
 User success is graded server-side and stored in a database, along with each scenario in question.
 
-Built with [RedwoodJS](https://redwoodjs.com)
+Built with [RedwoodJS](https://redwoodjs.com) and [pokersolver](https://github.com/goldfire/pokersolver)
 
 ## Feature Progress
 
@@ -17,7 +17,7 @@ Built with [RedwoodJS](https://redwoodjs.com)
 - [x] Frontend logic to generate random hole cards, community cards, and betting scenarios
 - [x] Random scenarios saved to the database
 - [x] User input to collect answers
-- [ ] Backend validation and grading
+- [x] Backend validation and grading
 - [ ] User grades and results tracking stored in the database
 
 ## Setup
@@ -42,7 +42,7 @@ yarn rw db up
 yarn redwood dev
 ```
 
-Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on `http://localhost:8911` and are also proxied to `http://localhost:8910/.redwood/functions/*`.
+Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on `http://localhost:8911` and are also proxied to `http://localhost:8910/.netlify/functions/*`.
 
 ### Logging in
 

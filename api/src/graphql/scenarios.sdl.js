@@ -5,6 +5,8 @@ export const schema = gql`
     communityCards: String!
     holeCards: String!
     players: Int!
+    email: String!
+    score: Int!
   }
 
   type Query {
@@ -16,6 +18,8 @@ export const schema = gql`
     communityCards: String!
     holeCards: String!
     players: Int!
+    email: String!
+    score: Int!
   }
 
   input UpdateScenarioInput {
@@ -23,6 +27,8 @@ export const schema = gql`
     communityCards: String
     holeCards: String
     players: Int
+    email: String!
+    score: Int!
   }
 
   type Mutation {
