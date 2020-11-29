@@ -1,7 +1,20 @@
 import React, { useState } from 'react'
+import { useMutation } from '@redwoodjs/web'
+import { useAuth } from '@redwoodjs/auth'
 import Scenario from '../../lib/scenarios/scenario'
 
+// GraphQL Mutation
+const CREATE_SCENARIO = gql`
+  mutation CreateScenarioMutation($input: CreateScenarioInput!) {
+    createScenario(input: $input) {
+      id
+    }
+  }
+`
+
 const Table = () => {
+  const { currentUser } = useAuth()
+  const [create] = useMutation(CREATE_SCENARIO)
   const [scenario, setScenario] = useState(Scenario())
   const [potOdds, setPotOdds] = useState('')
   const [handStrength, setHandStrength] = useState('')
@@ -18,7 +31,20 @@ const Table = () => {
       body: JSON.stringify(payload),
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data)
+        console.log(currentUser.email)
+        create({
+          variables: {
+            input: {
+              bettingInformation: JSON.stringify(scenario.bettingInformation),
+              communityCards: JSON.stringify(scenario.communityCards),
+              holeCards: JSON.stringify(scenario.holeCards),
+              players: scenario.players,
+            },
+          },
+        })
+      })
   }
 
   return (

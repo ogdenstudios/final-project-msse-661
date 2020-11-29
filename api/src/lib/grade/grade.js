@@ -7,31 +7,7 @@ const Grade = (payload) => {
   const finalPotSize = pot + callAmount
   const actualPotOdds = Math.round((callAmount / finalPotSize) * 100)
 
-  // Calculate hand strength
-  const numberOfOuts = calculateOuts(
-    payload.scenario.holeCards,
-    payload.scenario.communityCards
-  )
-
-  const actualHandStrength = () => {
-    if (payload.scenario.communityCards.length === 3) {
-      return numberOfOuts * 4
-    } else {
-      return numberOfOuts * 2
-    }
-  }
-
-  // Grade the answers
-  let grade = 0
-  if (actualPotOdds === payload.potOdds) {
-    grade += 0.5
-  }
-  if (actualHandStrength() === payload.handStrength) {
-    grade += 0.5
-  }
-  return grade
-
-  function calculateOuts(holeCards, communityCards) {
+  const calculateOuts = (holeCards, communityCards) => {
     const Hand = require('pokersolver').Hand
     const deck = [
       'AS',
@@ -112,6 +88,30 @@ const Grade = (payload) => {
 
     return numberOfOuts
   }
+
+  // Calculate hand strength
+  const numberOfOuts = calculateOuts(
+    payload.scenario.holeCards,
+    payload.scenario.communityCards
+  )
+
+  const actualHandStrength = () => {
+    if (payload.scenario.communityCards.length === 3) {
+      return numberOfOuts * 4
+    } else {
+      return numberOfOuts * 2
+    }
+  }
+
+  // Grade the answers
+  let grade = 0
+  if (actualPotOdds === payload.potOdds) {
+    grade += 0.5
+  }
+  if (actualHandStrength() === payload.handStrength) {
+    grade += 0.5
+  }
+  return grade
 }
 
 export default Grade
