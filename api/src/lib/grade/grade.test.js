@@ -1,7 +1,7 @@
 import Grade from './grade'
 
 describe('Betting', () => {
-  it('Returns a 0 if no part of the equation is correct', () => {
+  it('Returns a 0 and false/false if no part of the equation is correct', () => {
     const wrongAnswer = {
       potOdds: 30,
       handStrength: 100,
@@ -14,10 +14,13 @@ describe('Betting', () => {
         holeCards: ['AS', 'AD'],
       },
     }
-    expect(Grade(wrongAnswer)).toEqual(0)
+    const result = Grade(wrongAnswer)
+    expect(result.score).toEqual(0)
+    expect(result.potOddsCorrect).toBe(false)
+    expect(result.handStrengthCorrect).toBe(false)
   })
 
-  it('Returns a 0.5 if the pot odds are correct but the hand strength is not', () => {
+  it('Returns a 0.5 and true/false if the pot odds are correct but the hand strength is not', () => {
     const partialAnswer = {
       potOdds: 30,
       handStrength: 100,
@@ -30,10 +33,13 @@ describe('Betting', () => {
         holeCards: ['AS', 'AD'],
       },
     }
-    expect(Grade(partialAnswer)).toEqual(0.5)
+    const result = Grade(partialAnswer)
+    expect(result.score).toEqual(0.5)
+    expect(result.potOddsCorrect).toBe(true)
+    expect(result.handStrengthCorrect).toBe(false)
   })
 
-  it('Returns a 0.5 if the hand strength is correct but the pot odds are not', () => {
+  it('Returns a 0.5 and false/true if the hand strength is correct but the pot odds are not', () => {
     const partialAnswer = {
       potOdds: 30,
       handStrength: 4,
@@ -46,10 +52,13 @@ describe('Betting', () => {
         holeCards: ['AS', 'AD'],
       },
     }
-    expect(Grade(partialAnswer)).toEqual(0.5)
+    const result = Grade(partialAnswer)
+    expect(result.score).toEqual(0.5)
+    expect(result.potOddsCorrect).toBe(false)
+    expect(result.handStrengthCorrect).toBe(true)
   })
 
-  it('Returns a 1 if the answer is correct', () => {
+  it('Returns a 1 and true/true if the answer is correct', () => {
     const correctAnswer = {
       potOdds: 30,
       handStrength: 4,
@@ -62,6 +71,9 @@ describe('Betting', () => {
         holeCards: ['AS', 'AD'],
       },
     }
-    expect(Grade(correctAnswer)).toEqual(1)
+    const result = Grade(correctAnswer)
+    expect(result.score).toEqual(1)
+    expect(result.potOddsCorrect).toBe(true)
+    expect(result.handStrengthCorrect).toBe(true)
   })
 })

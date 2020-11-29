@@ -18,6 +18,20 @@ const Table = () => {
   const [scenario, setScenario] = useState(Scenario())
   const [potOdds, setPotOdds] = useState('')
   const [handStrength, setHandStrength] = useState('')
+  const [score, setScore] = useState(0)
+  const [potOddsCorrect, setPotOddsCorrect] = useState(false)
+  const [handStrengthCorrect, setHandStrengthCorrect] = useState(false)
+  const [graded, setGraded] = useState(false)
+
+  const resetScenario = () => {
+    setPotOdds('')
+    setHandStrength('')
+    setScenario(Scenario())
+    setGraded(false)
+    setScore(0)
+    setPotOddsCorrect(false)
+    setHandStrengthCorrect(false)
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -32,7 +46,10 @@ const Table = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        const score = data * 100
+        setScore(data.score * 100)
+        setPotOddsCorrect(data.potOddsCorrect)
+        setHandStrengthCorrect(data.handStrengthCorrect)
+        setGraded(true)
         create({
           variables: {
             input: {
@@ -58,7 +75,7 @@ const Table = () => {
       <div>
         Betting round: {scenario.bettingInformation.currentBettingRound}
       </div>
-      <button onClick={() => setScenario(Scenario())}>New scenario</button>
+      <button onClick={() => resetScenario()}>New scenario</button>
       <form data-cy="answerForm" onSubmit={(event) => handleSubmit(event)}>
         <label htmlFor="potOdds">What are your pot odds?</label>
         <input
@@ -81,6 +98,16 @@ const Table = () => {
         />
         <br></br>
         <button data-cy="submitAnswer">Submit</button>
+        {graded && (
+          <div>
+            Your results:
+            <ul>
+              <li>Score: {score}</li>
+              <li>Pot Odds Correct: {potOddsCorrect.toString()}</li>
+              <li>Hand Strength Correct: {handStrengthCorrect.toString()}</li>
+            </ul>
+          </div>
+        )}
       </form>
     </div>
   )

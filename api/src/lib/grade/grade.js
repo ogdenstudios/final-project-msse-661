@@ -104,14 +104,22 @@ const Grade = (payload) => {
   }
 
   // Grade the answers
-  let grade = 0
+  let score = 0
+  let potOddsCorrect = false
+  let handStrengthCorrect = false
   if (actualPotOdds === payload.potOdds) {
-    grade += 0.5
+    score += 0.5
+    potOddsCorrect = true
   }
   if (actualHandStrength() === payload.handStrength) {
-    grade += 0.5
+    score += 0.5
+    handStrengthCorrect = true
   }
-  return grade
+  return {
+    score,
+    potOddsCorrect,
+    handStrengthCorrect,
+  }
 }
 
 export default Grade
