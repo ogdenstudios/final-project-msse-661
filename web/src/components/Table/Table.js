@@ -1,37 +1,24 @@
 import React, { useState } from 'react'
-import { useMutation } from '@redwoodjs/web'
 import Scenario from '../../lib/scenarios/scenario'
 
-// GraphQL Mutation
-const CREATE_SCENARIO = gql`
-  mutation CreateScenarioMutation($input: CreateScenarioInput!) {
-    createScenario(input: $input) {
-      id
-    }
-  }
-`
-
 const Table = () => {
-  const [create] = useMutation(CREATE_SCENARIO)
   const [scenario, setScenario] = useState(Scenario())
   const [potOdds, setPotOdds] = useState('')
   const [handStrength, setHandStrength] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(potOdds)
-    console.log(handStrength)
-    console.log(scenario)
-    create({
-      variables: {
-        input: {
-          bettingInformation: JSON.stringify(scenario.bettingInformation),
-          communityCards: JSON.stringify(scenario.communityCards),
-          holeCards: JSON.stringify(scenario.holeCards),
-          players: scenario.players,
-        },
-      },
+    const payload = {
+      potOdds,
+      handStrength,
+      scenario,
+    }
+    fetch('/.netlify/functions/grading', {
+      method: 'POST',
+      body: JSON.stringify(payload),
     })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
   }
 
   return (
