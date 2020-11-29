@@ -18,7 +18,7 @@ Built with [RedwoodJS](https://redwoodjs.com) and [pokersolver](https://github.c
 - [x] Random scenarios saved to the database
 - [x] User input to collect answers
 - [x] Backend validation and grading
-- [ ] User grades and results tracking stored in the database
+- [x] User grades and results tracking stored in the database
 
 ## Setup
 
