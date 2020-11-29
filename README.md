@@ -17,7 +17,7 @@ Built with [RedwoodJS](https://redwoodjs.com) and [pokersolver](https://github.c
 - [x] Frontend logic to generate random hole cards, community cards, and betting scenarios
 - [x] Random scenarios saved to the database
 - [x] User input to collect answers
-- [ ] Backend validation and grading
+- [x] Backend validation and grading
 - [ ] User grades and results tracking stored in the database
 
 ## Setup
