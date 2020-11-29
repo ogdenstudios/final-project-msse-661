@@ -30,12 +30,30 @@ describe('Betting', () => {
   })
 
   it('Returns a 0.5 if the hand strength is correct but the pot odds are not', () => {
-    const partialAnswer = {}
+    const partialAnswer = {
+      potOdds: 30,
+      handStrength: 30,
+      scenario: {
+        bettingInformation: {
+          pot: 100,
+          currentBettingRound: [30],
+        },
+      },
+    }
     expect(Grade(partialAnswer)).toEqual(0.5)
   })
 
   it('Returns a 1 if the answer is correct', () => {
-    const correctAnswer = {}
+    const correctAnswer = {
+      potOdds: 30,
+      handStrength: 30,
+      scenario: {
+        bettingInformation: {
+          pot: 70,
+          currentBettingRound: [30],
+        },
+      },
+    }
     expect(Grade(correctAnswer)).toEqual(1)
   })
 })
