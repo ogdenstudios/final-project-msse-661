@@ -32,8 +32,7 @@ const Table = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
-        console.log(currentUser.email)
+        const score = data * 100
         create({
           variables: {
             input: {
@@ -41,6 +40,8 @@ const Table = () => {
               communityCards: JSON.stringify(scenario.communityCards),
               holeCards: JSON.stringify(scenario.holeCards),
               players: scenario.players,
+              email: currentUser.email,
+              score,
             },
           },
         })
