@@ -8,7 +8,7 @@ Users are be presented with randomized poker scenarios and asked to calculate th
 
 User success is graded server-side and stored in a database, along with each scenario in question.
 
-Built with [RedwoodJS](https://redwoodjs.com)
+Built with [RedwoodJS](https://redwoodjs.com) and [pokersolver](https://github.com/goldfire/pokersolver)
 
 ## Feature Progress
 
