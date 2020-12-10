@@ -5,7 +5,7 @@ const HomePage = () => {
   const { logIn, logOut, isAuthenticated } = useAuth()
   return (
     <>
-      <h1>Tyler WIlliams MSSE 661 Final Project</h1>
+      <h1>Tyler Williams MSSE 661 Final Project</h1>
       <button
         data-cy="homePageAuthButton"
         onClick={isAuthenticated ? logOut : logIn}
