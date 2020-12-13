@@ -10,7 +10,7 @@
     "cypress": "cypress open"
   },
   "devDependencies": {
-    "@redwoodjs/core": "^0.20.0",
+    "@redwoodjs/core": "^0.21.0",
     "cypress": "^5.5.0"
   },
   "eslintConfig": {

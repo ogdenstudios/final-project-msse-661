@@ -65,6 +65,8 @@ The test credentials should work in development environments, and also in produc
 
 ## Tests
 
+As of 2020-12-13, the RedwoodJS test package is broken. [I filed an issue with them](https://github.com/redwoodjs/redwood/issues/1581), but that means the test suite may fail when you run it on your own. Hopefully I'll get an answer before the project is submitted. Apologies about that. That's the risk (and fun) of using software before v1!
+
 RedwoodJS Tests (Jest):
 
 ```

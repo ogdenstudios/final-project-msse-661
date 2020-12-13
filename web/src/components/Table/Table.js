@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import { useMutation } from '@redwoodjs/web'
 import { useAuth } from '@redwoodjs/auth'
 import Scenario from '../../lib/scenarios/scenario'
+import CommunityCards from '../CommunityCards/CommunityCards'
+import HoleCards from '../HoleCards/HoleCards'
+import Players from '../Players/Players'
+import AnswerForm from '../AnswerForm/AnswerForm'
+import Grades from '../Grades/Grades'
 
 // GraphQL Mutation
 const CREATE_SCENARIO = gql`
@@ -11,29 +16,26 @@ const CREATE_SCENARIO = gql`
     }
   }
 `
-
 const Table = () => {
+  const [scenario, setScenario] = useState(Scenario())
   const { currentUser } = useAuth()
   const [create] = useMutation(CREATE_SCENARIO)
-  const [scenario, setScenario] = useState(Scenario())
-  const [potOdds, setPotOdds] = useState('')
-  const [handStrength, setHandStrength] = useState('')
   const [score, setScore] = useState(0)
   const [potOddsCorrect, setPotOddsCorrect] = useState(false)
   const [handStrengthCorrect, setHandStrengthCorrect] = useState(false)
   const [graded, setGraded] = useState(false)
+  const [attempts, setAttempts] = useState(0)
 
   const resetScenario = () => {
-    setPotOdds('')
-    setHandStrength('')
     setScenario(Scenario())
     setGraded(false)
     setScore(0)
     setPotOddsCorrect(false)
     setHandStrengthCorrect(false)
+    setAttempts(attempts + 1)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event, potOdds, handStrength) => {
     event.preventDefault()
     const payload = {
       potOdds,
@@ -67,48 +69,22 @@ const Table = () => {
 
   return (
     <div>
-      <h2>Scenario:</h2>
-      <div>Community cards: {scenario.communityCards}</div>
-      <div>Hole cards: {scenario.holeCards}</div>
-      <div>Players: {scenario.players}</div>
+      <CommunityCards cards={scenario.communityCards} />
+      <HoleCards cards={scenario.holeCards} />
+      <Players
+        players={scenario.players}
+        playerActions={scenario.bettingInformation.currentBettingRound}
+      />
       <div>Pot: {scenario.bettingInformation.pot}</div>
-      <div>
-        Betting round: {scenario.bettingInformation.currentBettingRound}
-      </div>
       <button onClick={() => resetScenario()}>New scenario</button>
-      <form data-cy="answerForm" onSubmit={(event) => handleSubmit(event)}>
-        <label htmlFor="potOdds">What are your pot odds?</label>
-        <input
-          data-cy="potOdds"
-          name="potOdds"
-          value={potOdds}
-          onChange={(event) => setPotOdds(event.target.value)}
-          required={true}
+      <AnswerForm handleSubmit={handleSubmit} attempts={attempts} />
+      {graded && (
+        <Grades
+          score={score}
+          potOddsCorrect={potOddsCorrect}
+          handStrengthCorrect={handStrengthCorrect}
         />
-        <br></br>
-        <label htmlFor="handStrength">
-          What is your approximate hand strength?
-        </label>
-        <input
-          data-cy="handStrength"
-          name="handStrength"
-          value={handStrength}
-          onChange={(event) => setHandStrength(event.target.value)}
-          required={true}
-        />
-        <br></br>
-        <button data-cy="submitAnswer">Submit</button>
-        {graded && (
-          <div>
-            Your results:
-            <ul>
-              <li>Score: {score}</li>
-              <li>Pot Odds Correct: {potOddsCorrect.toString()}</li>
-              <li>Hand Strength Correct: {handStrengthCorrect.toString()}</li>
-            </ul>
-          </div>
-        )}
-      </form>
+      )}
     </div>
   )
 }
