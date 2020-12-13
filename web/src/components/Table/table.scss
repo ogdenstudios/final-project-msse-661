@@ -1,0 +1,19 @@
+.table {
+	display: grid;
+	grid-template-columns: repeat(12, 8vw);
+	grid-template-rows: repeat(5, 8vw);
+}
+
+.tableTop {
+  position: relative;
+  grid-area: 2 / 2 / 5 / 12;
+  &__bg {
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    z-index: 1;
+  }
+}

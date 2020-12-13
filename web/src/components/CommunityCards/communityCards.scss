@@ -1,0 +1,25 @@
+.communityCards {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  left: 50%;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 40%;
+  .card {
+    background: white;
+    box-sizing: border-box;
+    height: 4vw;
+    margin: 0 10px;
+    padding: 5px;
+  }
+  .pot {
+    color: white;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+  }
+}

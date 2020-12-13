@@ -1,0 +1,12 @@
+.holeCards {
+  display: flex;
+  justify-content: space-around;
+  grid-area: 5 / 6 / 6 / 8;
+  .card {
+    box-sizing: border-box;
+    background: white;
+    border: 1px solid black;
+    text-align: center;
+    width: 40%;
+  }
+}

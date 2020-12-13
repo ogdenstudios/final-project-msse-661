@@ -4,10 +4,11 @@ import { useAuth } from '@redwoodjs/auth'
 import Scenario from '../../lib/scenarios/scenario'
 import CommunityCards from '../CommunityCards/CommunityCards'
 import HoleCards from '../HoleCards/HoleCards'
-import Players from '../Players/Players'
+import Player from '../Player/Player'
 import AnswerForm from '../AnswerForm/AnswerForm'
 import Grades from '../Grades/Grades'
-
+import tableTop from './table.png'
+import './table.scss'
 // GraphQL Mutation
 const CREATE_SCENARIO = gql`
   mutation CreateScenarioMutation($input: CreateScenarioInput!) {
@@ -69,15 +70,25 @@ const Table = () => {
 
   return (
     <div>
-      <CommunityCards cards={scenario.communityCards} />
-      <HoleCards cards={scenario.holeCards} />
-      <Players
-        players={scenario.players}
-        playerActions={scenario.bettingInformation.currentBettingRound}
-      />
-      <div>Pot: {scenario.bettingInformation.pot}</div>
-      <button onClick={() => resetScenario()}>New scenario</button>
+      <div className="table">
+        <div className="tableTop">
+          <img src={tableTop} className="tableTop__bg" />
+          <CommunityCards
+            cards={scenario.communityCards}
+            pot={scenario.bettingInformation.pot}
+          />
+        </div>
+        <HoleCards cards={scenario.holeCards} />
+        {[...Array(scenario.players)].map((player, index) => (
+          <Player
+            action={scenario.bettingInformation.currentBettingRound[index]}
+            position={index + 1}
+            key={index}
+          />
+        ))}
+      </div>
       <AnswerForm handleSubmit={handleSubmit} attempts={attempts} />
+      <button onClick={() => resetScenario()}>New scenario</button>
       {graded && (
         <Grades
           score={score}
