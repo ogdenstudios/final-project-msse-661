@@ -1,9 +1,19 @@
 .table {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  grid-template-areas:
-    "player1 player1 player2 player2 topspace player3 player3 player4 player4"
-    "player5 table table table table table table table player6"
-    "player7 player7 player7 player8 player8 player8 player9 player9 player9";
+	display: grid;
+	grid-template-columns: repeat(12, 8vw);
+	grid-template-rows: repeat(5, 8vw);
+}
+
+.tableTop {
+  position: relative;
+  grid-area: 2 / 2 / 5 / 12;
+  &__bg {
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    z-index: 1;
+  }
 }

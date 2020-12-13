@@ -7,6 +7,7 @@ import HoleCards from '../HoleCards/HoleCards'
 import Player from '../Player/Player'
 import AnswerForm from '../AnswerForm/AnswerForm'
 import Grades from '../Grades/Grades'
+import tableTop from './table.png'
 import './table.scss'
 // GraphQL Mutation
 const CREATE_SCENARIO = gql`
@@ -68,19 +69,26 @@ const Table = () => {
   }
 
   return (
-    <div className="table">
-      <CommunityCards cards={scenario.communityCards} />
-      <HoleCards cards={scenario.holeCards} />
-      {[...Array(scenario.players)].map((player, index) => (
-        <Player
-          action={scenario.bettingInformation.currentBettingRound[index]}
-          position={index + 1}
-          key={index}
-        />
-      ))}
-      <div>Pot: {scenario.bettingInformation.pot}</div>
-      <button onClick={() => resetScenario()}>New scenario</button>
+    <div>
+      <div className="table">
+        <div className="tableTop">
+          <img src={tableTop} className="tableTop__bg" />
+          <CommunityCards
+            cards={scenario.communityCards}
+            pot={scenario.bettingInformation.pot}
+          />
+        </div>
+        <HoleCards cards={scenario.holeCards} />
+        {[...Array(scenario.players)].map((player, index) => (
+          <Player
+            action={scenario.bettingInformation.currentBettingRound[index]}
+            position={index + 1}
+            key={index}
+          />
+        ))}
+      </div>
       <AnswerForm handleSubmit={handleSubmit} attempts={attempts} />
+      <button onClick={() => resetScenario()}>New scenario</button>
       {graded && (
         <Grades
           score={score}
