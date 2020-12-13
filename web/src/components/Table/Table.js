@@ -4,10 +4,10 @@ import { useAuth } from '@redwoodjs/auth'
 import Scenario from '../../lib/scenarios/scenario'
 import CommunityCards from '../CommunityCards/CommunityCards'
 import HoleCards from '../HoleCards/HoleCards'
-import Players from '../Players/Players'
+import Player from '../Player/Player'
 import AnswerForm from '../AnswerForm/AnswerForm'
 import Grades from '../Grades/Grades'
-
+import './table.scss'
 // GraphQL Mutation
 const CREATE_SCENARIO = gql`
   mutation CreateScenarioMutation($input: CreateScenarioInput!) {
@@ -71,10 +71,13 @@ const Table = () => {
     <div className="table">
       <CommunityCards cards={scenario.communityCards} />
       <HoleCards cards={scenario.holeCards} />
-      <Players
-        players={scenario.players}
-        playerActions={scenario.bettingInformation.currentBettingRound}
-      />
+      {[...Array(scenario.players)].map((player, index) => (
+        <Player
+          action={scenario.bettingInformation.currentBettingRound[index]}
+          position={index + 1}
+          key={index}
+        />
+      ))}
       <div>Pot: {scenario.bettingInformation.pot}</div>
       <button onClick={() => resetScenario()}>New scenario</button>
       <AnswerForm handleSubmit={handleSubmit} attempts={attempts} />
