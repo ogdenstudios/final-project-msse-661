@@ -68,7 +68,7 @@ const Table = () => {
   }
 
   return (
-    <div>
+    <div className="table">
       <CommunityCards cards={scenario.communityCards} />
       <HoleCards cards={scenario.holeCards} />
       <Players
