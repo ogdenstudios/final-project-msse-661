@@ -31,8 +31,8 @@ const Player = (props) => {
 
   return (
     <div className={`player position${props.position}`}>
-      <img src={robots[props.position]} />
-      <div>{action()}</div>
+      <img src={robots[props.position - 1]} />
+      <div className="text-xs">{action()}</div>
     </div>
   )
 }
