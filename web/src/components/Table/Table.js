@@ -69,8 +69,8 @@ const Table = () => {
   }
 
   return (
-    <div>
-      <div className="table">
+    <div className="flex flex-col mt-4">
+      <div className="table mt-4">
         <div className="tableTop">
           <img src={tableTop} className="tableTop__bg" />
           <CommunityCards
@@ -87,15 +87,22 @@ const Table = () => {
           />
         ))}
       </div>
-      <AnswerForm handleSubmit={handleSubmit} attempts={attempts} />
-      <button onClick={() => resetScenario()}>New scenario</button>
       {graded && (
-        <Grades
-          score={score}
-          potOddsCorrect={potOddsCorrect}
-          handStrengthCorrect={handStrengthCorrect}
-        />
+        <>
+          <Grades
+            score={score}
+            potOddsCorrect={potOddsCorrect}
+            handStrengthCorrect={handStrengthCorrect}
+          />
+          <button
+            className="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md self-center"
+            onClick={() => resetScenario()}
+          >
+            New scenario
+          </button>
+        </>
       )}
+      <AnswerForm handleSubmit={handleSubmit} attempts={attempts} />
     </div>
   )
 }

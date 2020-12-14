@@ -2,7 +2,7 @@ import React from 'react'
 
 const Grades = (props) => {
   return (
-    <div>
+    <div className="my-8 mx-auto">
       Your results:
       <ul>
         <li>Score: {props.score}</li>
